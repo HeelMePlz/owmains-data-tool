@@ -2,18 +2,23 @@ version: "3.9"
 
 services:
   db:
-    image: mysql:latest
-    container_name: mysql_container
+    image: mariadb:latest
+    restart: always
+    container_name: mariadb_container
     environment:
       MYSQL_DATABASE: "${MYSQL_DB}"
       MYSQL_USERNAME: "${MYSQL_USERNAME}"
       MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
     ports:
       - "3306:3306"
+    expose:
+      - "3306"
     volumes:
       - owmains_db:/var/lib/mysql
   adminer:
     image: adminer
+    restart: always
     container_name: adminer_container
     ports:
       - "8080:8080"
