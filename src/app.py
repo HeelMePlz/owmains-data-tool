@@ -5,21 +5,20 @@ reddit = auth.request()
 
 os.system("clear")
 
-def get_owmains_subreddits():
-    
-    subcounts = []
-    sub = {}
+
+def get_subreddits():
+
+    subreddit_list = []
 
     # use my multireddit to get the overwatch mains subreddits
     subreddits = reddit.multireddit("HeelMePlz", "OverwatchMains").subreddits
 
-    # get the name and subscriber count of each subreddit
+    # add the name of each subreddit to the list
     for subreddit in subreddits:
-        sub = {
-            "sub_name": subreddit.display_name.capitalize(),
-            "sub_count": subreddit.subscribers,
-        }
-        subcounts.append(sub)
+        name = subreddit.display_name.lower()
+        subreddit_list.append(name)
 
-    # sort the list by name (subreddits starting in lowercase were at the end)
-    subcounts = sorted(subcounts, key=lambda k: k["sub_name"])
+    # sort the list in alphabetical order
+    subreddit_list.sort()
+
+    return subreddit_list
