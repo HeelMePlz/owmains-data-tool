@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:latest
+    container_name: mysql_container
+    environment:
+      MYSQL_DATABASE: "${MYSQL_DB}"
+      MYSQL_USERNAME: "${MYSQL_USERNAME}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    ports:
+      - "3306:3306"
+    volumes:
+      - owmains_db:/var/lib/mysql
+  adminer:
+    image: adminer
+    container_name: adminer_container
+    ports:
+      - "8080:8080"
+volumes:
+  owmains_db:
