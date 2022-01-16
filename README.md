@@ -24,14 +24,30 @@ Collect data on the Overwatch Mains subreddits
 
 3. Replace each field in the .env with your credentials.
 
-4. Create and activate a virtual environment.
+4. Add the following to the .env for the docker-compose.yml
+
+    ```env
+    MYSQL_HOST=localhost
+    MYSQL_PORT=3306
+    MYSQL_USERNAME=root
+    MYSQL_PASSWORD=password
+    MYSQL_ROOT_PASSWORD=password
+    MYSQL_DB=owmains
+    ```
+
+    If the application is running on another machine, change `localhost` to it's address.
+    Change `password` to a suitable password.
+
+5. Run `docker-compose up -d`
+
+6. Create and activate a virtual environment.
 
     ```sh
     python3 -m venv .venv
     source .venv/bin/activate
     ```
 
-5. Install dependencies.
+7. Install dependencies.
 
     ```sh
     pip install -r requirements.txt
